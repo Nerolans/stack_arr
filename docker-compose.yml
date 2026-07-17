@@ -177,19 +177,3 @@ services:
     env_file:
       - '.env'
 
-  plex:
-    image: lscr.io/linuxserver/plex:latest
-    container_name: plex
-    network_mode: host
-    environment:
-      - PUID=950
-      - PGID=950
-      - TZ=Europe/Zurich
-      - VERSION=docker
-    volumes:
-      - /mnt/storage/media/Arr/plex/config:/config
-      - /mnt/storage/media/Arr/Radarr/movies:/data/Movies
-      - /mnt/storage/media/Arr/Sonarr/tvshows:/data/TVShows
-      - /mnt/storage/media/Arr/Lidarr/music:/data/Music
-    restart: unless-stopped
-
