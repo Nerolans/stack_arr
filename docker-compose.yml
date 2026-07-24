@@ -144,14 +144,15 @@ services:
       - ${ARRPATH}Radarr/movies:/data/Movies
       - ${ARRPATH}Sonarr/tvshows:/data/TVShows
       - ${ARRPATH}Lidarr/music:/data/Music
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Paris
-      - NVIDIA_VISIBLE_DEVICES=all
-      - NVIDIA_DRIVER_CAPABILITIES=compute,video,utility
     env_file:
       - '.env'
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu, compute, video, utility]
     restart: unless-stopped
           
 #  ██████╗ ██████╗ ██╗████████╗████████╗ ██████╗ ██████╗ ██████╗ ███████╗███╗   ██╗████████╗
